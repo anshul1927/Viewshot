@@ -1,5 +1,6 @@
 package com.muddzdev.viewshot;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity implements Viewshot.OnSaveRe
         setContentView(R.layout.activity_main);
         frameLayout = (FrameLayout) findViewById(R.id.framelayout);
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+        PermissionRequester permissionRequester = new PermissionRequester(this, this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        permissionRequester.request();
     }
 
 
