@@ -10,7 +10,7 @@ Perfect for apps like photofilter, quotes, meme and drawing apps!
 
 - The library works in an ```AsyncTask```
 - Save your Views in: ```.JPG```  ```.PNG ``` ```.nomedia```
-- Optional listener that gives you a boolean value and String path when/if the image is saved.
+- Set a listener that gives you a boolean value and String path for when/if the image is saved.
 - Set filename and specifiy your own directory/path or leave it to defaults.
 - Support from API 19+
 - Very simple to use!
