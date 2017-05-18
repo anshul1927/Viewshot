@@ -8,7 +8,7 @@ Perfect for apps like photofilter, quotes, meme and drawing apps!
 
 ### Features
 
-- The library works in an ```AsyncTask```
+- The library saves in an ```AsyncTask``` thread
 - Save your Views in: ```.JPG```  ```.PNG ``` ```.nomedia```
 - Set a listener that gives you a boolean value and String path for when/if the image is saved.
 - Set filename and specifiy your own directory/path or leave it to defaults.
