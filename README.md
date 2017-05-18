@@ -4,7 +4,7 @@ Viewshot is a Android library that saves any `View`, `ViewGroup` or `SurfaceView
 Perfect for apps like photofilter, quotes, meme and drawing apps!
 
 
-<a href="https://github.com/Muddz/Viewshot/blob/master/demo.apk">Download the demo.apk</a>
+<a href="https://github.com/Muddz/Viewshot/raw/master/demo.apk">Download the demo.apk</a>
 
 ### Features
 
