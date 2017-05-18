@@ -19,13 +19,13 @@ Perfect for apps like photofilter, quotes, meme and drawing apps!
 ### Example of the simplest usage:
 
 ```java
-   Viewshot.of(frameLayout).toJPG().save();
+   Viewshot.of(view).toJPG().save();
 ```
 
 ### With all current attributes:
 
 ```java
-             Viewshot.of(frameLayout)
+             Viewshot.of(view)
                         .setOnSaveResultListener(this)
                         .setFilename("My image")
                         .setDirectoryPath("Pictures/myAppName")
