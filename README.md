@@ -40,7 +40,7 @@ Add the depedency in your build.gradle. The library is distributed via jCenter
 
 ```groovy
 dependencies {
-    compile 'com.muddzdev:viewshot:1.0.0'  
+    compile 'com.muddzdev:viewshot:1.0.2'  
 }
 ```
  ----
