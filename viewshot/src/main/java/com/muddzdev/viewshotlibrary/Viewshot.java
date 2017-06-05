@@ -2,6 +2,7 @@ package com.muddzdev.viewshotlibrary;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -49,7 +50,7 @@ public class Viewshot {
     private OnSaveResultListener onSaveResultListener;
     private int jpgQuality;
     private Handler handler;
-    private final View view;
+    private View view;
 
     private Viewshot(@NonNull View view) {
         this.view = view;
@@ -139,7 +140,7 @@ public class Viewshot {
      */
     public void save() throws IllegalStateException, NullPointerException {
         if (Utils.isExternalStorageReady() && Utils.isPermissionGranted(getAppContext())) {
-            AsyncSaveImage asyncSaveBitmap = new AsyncSaveImage(getAppContext());
+            AsyncSaveImage asyncSaveBitmap = new AsyncSaveImage(getAppContext(), getBitmap());
             asyncSaveBitmap.execute();
         } else {
             Log.i(TAG, "Viewshot couldn't save. Make sure permission to write to storage is granted");
@@ -184,16 +185,14 @@ public class Viewshot {
         }
     }
 
-
     private Bitmap getBitmap() {
-        view.setDrawingCacheEnabled(true);
-        view.getDrawingCache();
-        view.buildDrawingCache();
-        Bitmap bitmap = Bitmap.createBitmap(view.getDrawingCache());
-        view.setDrawingCacheEnabled(false);
-        view.buildDrawingCache(false);
+        Bitmap bitmap = Bitmap.createBitmap(view.getWidth(),view.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        view.draw(canvas);
+        canvas.setBitmap(null);
         return bitmap;
     }
+
 
     private void notifyListener(final boolean isSaved, final String path) {
         if (onSaveResultListener != null) {
@@ -221,9 +220,11 @@ public class Viewshot {
 
     private class AsyncSaveImage extends AsyncTask<Void, Void, Void> implements MediaScannerConnection.OnScanCompletedListener {
         private Context context;
+        private Bitmap bitmap;
 
-        public AsyncSaveImage(Context context) {
+        private AsyncSaveImage(Context context, Bitmap bitmap) {
             this.context = context;
+            this.bitmap = bitmap;
         }
 
         @Override
@@ -236,21 +237,25 @@ public class Viewshot {
             } else {
                 try (OutputStream out = new BufferedOutputStream(new FileOutputStream(imageFile))) {
                     if (fileExtension.equals(EXTENSION_JPG)) {
-                        getBitmap().compress(Bitmap.CompressFormat.JPEG, jpgQuality, out);
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, jpgQuality, out);
                     } else if (fileExtension.equals(EXTENSION_PNG)) {
-                        getBitmap().compress(Bitmap.CompressFormat.PNG, 100, out);
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
                     } else {
-                        getBitmap().compress(Bitmap.CompressFormat.JPEG, 100, out);
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    notifyListener(false, null);
+                    bitmap = null;
+                    notifyListener  (false, null);
                 }
             }
 
+            bitmap = null;
             MediaScannerConnection.scanFile(context, new String[]{imageFile.toString()}, null, this);
             return null;
         }
+
+
 
         @Override
         public void onScanCompleted(String path, Uri uri) {

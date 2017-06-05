@@ -1,9 +1,11 @@
 package com.muddzdev.viewshot;
 
 import android.Manifest;
+import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
+import android.view.SurfaceView;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
@@ -16,7 +18,6 @@ import com.muddzdev.viewshotlibrary.Viewshot;
  * Take a viewshot (like screenshot) of any View, ViewGroup or SurfaceView.
  */
 public class MainActivity extends AppCompatActivity implements Viewshot.OnSaveResultListener {
-
     private FrameLayout frameLayout;
     private Vibrator vibrator;
 
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements Viewshot.OnSaveRe
         vibrator.vibrate(60);
         switch (view.getId()) {
             case R.id.jpg:
-                Viewshot.of(frameLayout).setOnSaveResultListener(this).toJPG().save();
+                Viewshot.of(frameLayout.getRootView()).setOnSaveResultListener(this).toJPG().save();
                 break;
             case R.id.png:
                 Viewshot.of(frameLayout).setOnSaveResultListener(this).toPNG().save();

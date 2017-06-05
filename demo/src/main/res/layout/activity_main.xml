@@ -53,31 +53,31 @@
 
 
     <FrameLayout
-        android:id="@+id/framelayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/bottomBar">
+    android:id="@+id/framelayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_above="@id/bottomBar">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/river" />
+    <ImageView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scaleType="centerCrop"
+    android:src="@drawable/river" />
 
-        <EditText
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|center_vertical"
-            android:layout_marginBottom="50dp"
-            android:background="#9c000000"
+    <EditText
+    android:id="@+id/textView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal|center_vertical"
+    android:layout_marginBottom="50dp"
+    android:background="#9c000000"
 
-            android:gravity="center"
-            android:padding="30dp"
-            android:text="... Viewshot ..."
-            android:textColor="#ffffff"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+    android:gravity="center"
+    android:padding="30dp"
+    android:text="... Viewshot ..."
+    android:textColor="#ffffff"
+    android:textSize="30sp"
+    android:textStyle="bold" />
 
     </FrameLayout>
 
