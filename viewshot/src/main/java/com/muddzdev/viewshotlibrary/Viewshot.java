@@ -3,6 +3,9 @@ package com.muddzdev.viewshotlibrary;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.GradientDrawable;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -12,6 +15,9 @@ import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -147,8 +153,7 @@ public class Viewshot {
         }
     }
 
-    //----------------------- PUBLIC METHOD END -------------------------
-
+    //----------------------- PUBLIC METHODS END -------------------------
 
     private Context getAppContext() {
         if (view == null) {
